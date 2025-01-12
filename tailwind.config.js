@@ -53,7 +53,16 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+			keyframes: {
+				"appearance": {
+					'from': { opacity: 0 },
+					'to': { opacity: 1 },
+				},
+			},
+			animation: {
+				"smooth": "appearance .1s ease-in forwards"
+			}
   	}
   },
   plugins: [require("tailwindcss-animate")],
