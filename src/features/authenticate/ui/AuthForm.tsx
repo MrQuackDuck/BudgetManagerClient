@@ -8,7 +8,7 @@ import { AuthService } from "../api/AuthService";
 import { errorToast } from "@/shared/lib/errorToast";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
-import { useAuthState } from "@/shared/lib/hooks/useAuthState";
+import { useAuthStore } from "@/shared/lib/hooks/useAuthStore";
 
 type Stage = "tabs" | "enterCode";
 
@@ -16,7 +16,7 @@ function AuthForm() {
   const [stage, setStage] = useState<Stage>("tabs");
   const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const setAuthenticated = useAuthState((state) => state.setAuthenticated);
+  const setAuthenticated = useAuthStore((state) => state.setAuthenticated);
 
   function handleSignIn(data) {
     setIsLoading(true);
