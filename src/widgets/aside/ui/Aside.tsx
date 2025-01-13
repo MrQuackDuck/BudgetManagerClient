@@ -1,58 +1,29 @@
-import { BudgetModel } from "@/entities/budget/model/BudgetModel";
 import { Button } from "@/shared/ui/Button";
 import { Separator } from "@/shared/ui/Separator";
 import { Tabs, TabsList, TabsTrigger } from "@/shared/ui/Tabs";
 import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 import BudgetButton from "./BudgetButton";
-import { CategoryModel } from "@/entities/category/model/CategoryModel";
 import CategoryButton from "./CategoryButton";
+import { useBudgetStore } from "@/entities/budget/lib/hooks/useBudgetStore";
+import { useCategoryStore } from "@/entities/category/lib/hooks/useCategoryStore";
+import NewBudgetDialog from "./NewBudgetDialog";
+import NewCategoryDialog from "./NewCategoryDialog";
 
 function Aside() {
   const [selectedTab, setSelectedTab] = useState("budgets");
   const [selectedBudgetId, setSelectedBudgetId] = useState(1);
 
-  const budgets: BudgetModel[] = [
-    {
-      id: 1,
-      title: "Budget 1",
-      created_at: "",
-      updated_at: "",
-      initial_amount: 0,
-      related_user: "",
-      related_currency: {
-        id: 1,
-        name: "US Dollar",
-        short_name: "USD",
-        symbol: "$"
-      }
-    },
-    {
-      id: 2,
-      title: "Budget 2",
-      created_at: "",
-      updated_at: "",
-      initial_amount: 0,
-      related_user: "",
-      related_currency: {
-        id: 2,
-        name: "Euro",
-        short_name: "EUR",
-        symbol: "€"
-      }
-    }
-  ];
+  const [isNewBudgetDialogOpen, setIsNewBudgetDialogOpen] = useState(false);
+  const [isNewCategoryDialogOpen, setIsNewCategoryDialogOpen] = useState(false);
 
-  const categories: CategoryModel[] = [
-    {
-      id: 1,
-      name: "Category 1",
-    },
-    {
-      id: 2,
-      name: "Category 2",
-    }
-  ];
+  const budgets = useBudgetStore(state => state.budgets);
+  const categories = useCategoryStore(state => state.categories);
+
+  function handlePlusClick() {
+    if (selectedTab === "budgets") setIsNewBudgetDialogOpen(true);
+    if (selectedTab === "categories") setIsNewCategoryDialogOpen(true);
+  }
 
   return (
     <aside className="flex flex-col px-[10px] gap-3 w-[320px]">
@@ -67,7 +38,7 @@ function Aside() {
             </TabsTrigger>
           </TabsList>
         </Tabs>
-        <Button variant={"outline"} className="aspect-square rounded-full">
+        <Button onClick={handlePlusClick} variant={"outline"} className="aspect-square rounded-full">
           <PlusIcon className="w-4 h-4" />
         </Button>
       </div>
@@ -88,6 +59,9 @@ function Aside() {
           </>
         )}
       </div>
+
+      <NewBudgetDialog isOpen={isNewBudgetDialogOpen} onOpenChange={setIsNewBudgetDialogOpen} />
+      <NewCategoryDialog isOpen={isNewCategoryDialogOpen} onOpenChange={setIsNewCategoryDialogOpen} />
     </aside>
   );
 }
