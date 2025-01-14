@@ -52,9 +52,9 @@ function ProfileSettingsDialog({ isOpen, onOpenChange }: ProfileSettingsDialogPr
   if (!profile) return <></>;
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogTitle className="hidden" />
-        <DialogDescription className="hidden" />
+      <DialogContent className="gap-2">
+        <DialogTitle>Profile Settings</DialogTitle>
+        <DialogDescription>Here you can change your profile settings</DialogDescription>
         <Form {...form}>
           <form className="flex flex-col gap-1.5" onSubmit={form.handleSubmit(onDataSubmit)}>
             <FormField
