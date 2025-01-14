@@ -18,5 +18,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
   },
   setUnauthenticated: () => {
     set({ isAuthenticated: false, token: "" });
+    setToLocalStorage("isAuthenticated", false);
+    setToLocalStorage("token", "");
   }
 }));

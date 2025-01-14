@@ -4,38 +4,44 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/shared/ui/Button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/shared/ui/Form";
+import { ArrowLeftIcon } from "lucide-react";
+import { Separator } from "@/shared/ui/Separator";
 
 const formSchema = z.object({
   username: z.string().min(2, `Username must contain at least ${2} symbols!`).max(50, `Username must contain no more than ${50} symbols!`),
-  phone: z.string().min(9, `Phone number must contain at least ${9} symbols!`).max(20, `Phone number must contain no more than ${20} symbols!`)
 });
 
-interface SignUpFormProps {
+interface ChooseUsernameFormProps {
+  back: () => void;
   onSubmit: (data: z.infer<typeof formSchema>) => void;
+  defaultUsername?: string;
 }
 
-export default function SignUpForm({ onSubmit }: SignUpFormProps) {
+export default function ChooseUsernameForm({ back, onSubmit, defaultUsername }: ChooseUsernameFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      phone: ""
+    values: {
+      "username": defaultUsername ?? "",
     }
   });
 
   function onDataSubmit(data: z.infer<typeof formSchema>) {
     const username = data.username;
-    let phone = data.phone;
 
-    // Extract only numbers from the phone number
-    phone = phone.replace(/\D/g, "");
-
-    // Send the phone number to the server
-    onSubmit({ phone, username });
+    onSubmit({ username });
   }
 
   return (
     <Form {...form}>
       <form className="flex flex-col gap-2" onSubmit={form.handleSubmit(onDataSubmit)}>
+        <div className='flex flex-row items-center justify-between'>
+          <Button type="button" onClick={back} variant={"outline"} className="w-9 h-9" size={"icon"}>
+            <ArrowLeftIcon strokeWidth={2.5} className="h-4 w-4" />
+          </Button>
+          <p className="text-xl font-medium">Choose Username</p>
+          <Button className='invisible w-9 h-9' size={'icon'}></Button>
+        </div>
+        <Separator orientation="horizontal" />
         <div className="space-y-1">
           <FormField
             control={form.control}
@@ -46,27 +52,13 @@ export default function SignUpForm({ onSubmit }: SignUpFormProps) {
                 <FormControl>
                   <Input autoComplete="off" placeholder="Your display name" {...field} />
                 </FormControl>
-                <FormDescription>This is your display name</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Phone number</FormLabel>
-                <FormControl>
-                  <Input autoComplete="off" placeholder="+38 (012) 345 67 89" {...field} />
-                </FormControl>
-                <FormDescription>This is your phone number that you used to register</FormDescription>
+                <FormDescription>The name that will be displayed to you</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
         </div>
-        <Button className="w-full">Sign In</Button>
+        <Button className="w-full">Continue</Button>
       </form>
     </Form>
   );
