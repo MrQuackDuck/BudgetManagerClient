@@ -1,12 +1,12 @@
 import { BudgetService } from "@/entities/budget/api/BudgetService";
 import { useBudgetStore } from "@/entities/budget/lib/hooks/useBudgetStore";
 import { errorToast } from "@/shared/lib/errorToast";
-import { useAuthStore } from "@/shared/lib/hooks/useAuthStore";
+import { useLogout } from "@/shared/lib/useLogout";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
 
 export const useFetchBudgets = () => {
-  const logOut = useAuthStore(state => state.setUnauthenticated);
+  const logOut = useLogout();
   
   const setBudgets = useBudgetStore((state) => state.setBudgets);
   const { data, isError, error } = useQuery("budgets", async () => {

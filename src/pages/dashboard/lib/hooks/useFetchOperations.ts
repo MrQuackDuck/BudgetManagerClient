@@ -2,12 +2,12 @@ import { useBudgetStore } from "@/entities/budget/lib/hooks/useBudgetStore";
 import { OperationService } from "@/entities/operation/api/OperationService";
 import { useOperationStore } from "@/entities/operation/lib/hooks/useOperationStore";
 import { errorToast } from "@/shared/lib/errorToast";
-import { useAuthStore } from "@/shared/lib/hooks/useAuthStore";
+import { useLogout } from "@/shared/lib/useLogout";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
 
 export const useFetchOperations = () => {
-  const logOut = useAuthStore(state => state.setUnauthenticated);
+  const logOut = useLogout();
   const selectedBudget = useBudgetStore((state) => state.selectedBudget);
 
   const setOperations = useOperationStore((state) => state.setOperations);

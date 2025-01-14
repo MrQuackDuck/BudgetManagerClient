@@ -1,12 +1,12 @@
 import { CurrencyService } from "@/entities/currency/api/CurrencyService";
 import { useCurrencyStore } from "@/entities/currency/lib/hooks/useCurrencyStore";
 import { errorToast } from "@/shared/lib/errorToast";
-import { useAuthStore } from "@/shared/lib/hooks/useAuthStore";
+import { useLogout } from "@/shared/lib/useLogout";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
 
 export const useFetchCurrencies = () => {
-  const logOut = useAuthStore(state => state.setUnauthenticated);
+  const logOut = useLogout();
 
   const setCurrencis = useCurrencyStore((state) => state.setCurrencies);
   const { data, isError, error } = useQuery("currencies", async () => {

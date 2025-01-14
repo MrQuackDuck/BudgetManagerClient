@@ -1,12 +1,12 @@
 import { CategoryService } from "@/entities/category/api/CategoryService";
 import { useCategoryStore } from "@/entities/category/lib/hooks/useCategoryStore";
 import { errorToast } from "@/shared/lib/errorToast";
-import { useAuthStore } from "@/shared/lib/hooks/useAuthStore";
+import { useLogout } from "@/shared/lib/useLogout";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
 
 export const useFetchCategories = () => {
-  const logOut = useAuthStore(state => state.setUnauthenticated);
+  const logOut = useLogout();
 
   const setCategoris = useCategoryStore((state) => state.setCategories);
   const { data, isError, error } = useQuery("categories", async () => {

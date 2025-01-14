@@ -4,14 +4,14 @@ import { UserModel } from "../../model/UserModel";
 
 interface ProfileStore {
   profile: UserModel | null;
-  setProfile: (profile: UserModel) => void;
+  setProfile: (profile: UserModel | null) => void;
 }
 
 export const useProfileStore = create<ProfileStore>()(
   devtools(
     (set) => ({
       profile: null,
-      setProfile: (profile: UserModel) => {
+      setProfile: (profile: UserModel | null) => {
         set({ profile });
       }
     }),

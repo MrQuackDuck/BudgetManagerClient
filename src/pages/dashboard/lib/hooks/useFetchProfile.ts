@@ -1,11 +1,11 @@
 import { ProfileService } from "@/entities/user/api/ProfileService";
 import { useProfileStore } from "@/entities/user/lib/hooks/useProfileStore";
-import { useAuthStore } from "@/shared/lib/hooks/useAuthStore";
+import { useLogout } from "@/shared/lib/useLogout";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
 
 export const useFetchProfile = () => {
-  const logOut = useAuthStore(state => state.setUnauthenticated);
+  const logOut = useLogout();
 
   const setProfile = useProfileStore((state) => state.setProfile);
   const { data, isError, error } = useQuery("profile", async () => {

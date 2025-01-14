@@ -1,12 +1,12 @@
-import { useAuthStore } from "@/shared/lib/hooks/useAuthStore";
 import { Button } from "@/shared/ui/Button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/shared/ui/DropdownMenu";
 import { SettingsIcon, Undo2Icon, UserIcon } from "lucide-react";
 import { useState } from "react";
 import ProfileSettingsDialog from "./ProfileSettingsDialog";
+import { useLogout } from "@/shared/lib/useLogout";
 
 function ProfileButton() {
-  const logOut = useAuthStore((state) => state.setUnauthenticated);
+  const logOut = useLogout();
   const [areSettingsShown, setAreSettingsShown] = useState(false);
 
   return (
