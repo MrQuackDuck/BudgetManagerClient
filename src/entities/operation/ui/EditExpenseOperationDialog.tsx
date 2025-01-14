@@ -51,7 +51,7 @@ function EditExpenseOperationDialog({ operation, isOpen, onOpenChange, deleteCli
 
   function onDataSubmit(data: z.infer<typeof formSchema>) {
     const title = data.title;
-    const operationType = "ADD";
+    const operationType = "SUB";
     const amount = data.amount;
 
     // Send the operation data to the server
