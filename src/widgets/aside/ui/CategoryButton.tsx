@@ -40,7 +40,7 @@ function CategoryButton({ category, onPressed }: CategoryButtonProps) {
               <PencilIcon className="mr-2 h-4 w-4" strokeWidth={2} /> Edit category
             </ContextMenuItem>
             <ContextMenuItem className="text-red-500" onClick={() => setIsDeleteDialogOpen(true)}>
-              <Trash2Icon className="mr-2 h-4 w-4" strokeWidth={2} /> Delete budget
+              <Trash2Icon className="mr-2 h-4 w-4" strokeWidth={2} /> Delete category
             </ContextMenuItem>
           </ContextMenuGroup>
         </ContextMenuContent>
