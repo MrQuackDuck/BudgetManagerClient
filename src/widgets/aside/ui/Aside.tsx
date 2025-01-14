@@ -9,17 +9,18 @@ import { useBudgetStore } from "@/entities/budget/lib/hooks/useBudgetStore";
 import { useCategoryStore } from "@/entities/category/lib/hooks/useCategoryStore";
 import NewBudgetDialog from "./NewBudgetDialog";
 import NewCategoryDialog from "./NewCategoryDialog";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/tooltip";
 
 function Aside() {
   const [selectedTab, setSelectedTab] = useState("budgets");
-  const selectedBudget = useBudgetStore(state => state.selectedBudget);
-  const setSelectedBudget = useBudgetStore(state => state.setSelectedBudget);
+  const selectedBudget = useBudgetStore((state) => state.selectedBudget);
+  const setSelectedBudget = useBudgetStore((state) => state.setSelectedBudget);
 
   const [isNewBudgetDialogOpen, setIsNewBudgetDialogOpen] = useState(false);
   const [isNewCategoryDialogOpen, setIsNewCategoryDialogOpen] = useState(false);
 
-  const budgets = useBudgetStore(state => state.budgets);
-  const categories = useCategoryStore(state => state.categories);
+  const budgets = useBudgetStore((state) => state.budgets);
+  const categories = useCategoryStore((state) => state.categories);
 
   function handlePlusClick() {
     if (selectedTab === "budgets") setIsNewBudgetDialogOpen(true);
@@ -43,9 +44,16 @@ function Aside() {
             </TabsTrigger>
           </TabsList>
         </Tabs>
-        <Button onClick={handlePlusClick} variant={"outline"} className="aspect-square rounded-full">
-          <PlusIcon className="w-4 h-4" />
-        </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button onClick={handlePlusClick} variant={"outline"} className="aspect-square rounded-full">
+              <PlusIcon className="w-4 h-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            Add {selectedTab === "budgets" ? "budget" : "category"}
+          </TooltipContent>
+        </Tooltip>
       </div>
       <Separator orientation="horizontal" />
       <div className="flex flex-col gap-2">
