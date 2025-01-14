@@ -36,7 +36,7 @@ function BudgetButton({ budget, onPressed, isSelected }: BudgetButtonProps) {
             className={cn("flex flex-row transition-all justify-start border-none gap-1.5 select-none cursor-pointer py-1 px-3", isSelected && "shadow-md")}
             onClick={() => onPressed(budget)}
           >
-            <span className="text-slate-500 font-semibold text-sm">{budget.related_currency.symbol}</span>
+            <span className="text-muted-foreground font-semibold text-sm">{budget.related_currency.symbol}</span>
             <span className="text-sm font-medium">{budget.title}</span>
           </Button>
         </ContextMenuTrigger>
