@@ -76,7 +76,7 @@ function AuthForm() {
         </CardContent>
       </Card>
 
-      {isLoading && <Loader2 className="w-5 h-5 animate-spin" />}
+      {isLoading && <Loader2 className="w-5 h-5 animate-spin max-lg:text-white" />}
     </>
   );
 }

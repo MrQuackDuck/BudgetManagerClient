@@ -29,7 +29,7 @@ function MainSection() {
   const currencySymbol = selectedBudget.related_currency.symbol;
   return (
     <>
-      <div className="w-full max-h-full flex flex-col gap-3 px-6">
+      <div className="w-full h-full max-h-full flex flex-col gap-3 px-6">
         <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row items-center gap-2">
             <span className="text-xl pt-0.5 font-semibold text-muted-foreground select-none">{currencySymbol}</span>

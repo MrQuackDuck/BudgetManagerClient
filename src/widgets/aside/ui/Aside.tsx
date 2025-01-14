@@ -10,8 +10,14 @@ import NewCategoryDialog from "../../../entities/category/ui/NewCategoryDialog";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/Tooltip";
 import NewBudgetDialog from "@/entities/budget/ui/NewBudgetDialog";
 import BudgetButton from "@/entities/budget/ui/BudgetButton";
+import { ScrollArea } from "@/shared/ui/ScrollArea";
+import { cn } from "@/shared/lib/utils";
 
-function Aside() {
+interface AsideProps {
+  className?: string;
+}
+
+function Aside({ className }: AsideProps) {
   const [selectedTab, setSelectedTab] = useState("budgets");
   const selectedBudget = useBudgetStore((state) => state.selectedBudget);
   const setSelectedBudget = useBudgetStore((state) => state.setSelectedBudget);
@@ -32,7 +38,7 @@ function Aside() {
   }, [selectedBudget, budgets, setSelectedBudget]);
 
   return (
-    <aside className="flex flex-col px-[10px] gap-3 w-[320px]">
+    <aside className={cn("flex flex-col px-[10px] gap-3 max-w-[320px]", className)}>
       <div className="flex gap-3 items-center">
         <Tabs className="w-full" defaultValue="budgets" value={selectedTab} onValueChange={setSelectedTab}>
           <TabsList className="w-full">
@@ -50,28 +56,29 @@ function Aside() {
               <PlusIcon className="w-4 h-4" />
             </Button>
           </TooltipTrigger>
-          <TooltipContent>
-            Add {selectedTab === "budgets" ? "budget" : "category"}
-          </TooltipContent>
+          <TooltipContent>Add {selectedTab === "budgets" ? "budget" : "category"}</TooltipContent>
         </Tooltip>
       </div>
       <Separator orientation="horizontal" />
-      <div className="flex flex-col gap-2">
-        {selectedTab == "budgets" && (
-          <>
-            {budgets.map((budget) => (
-              <BudgetButton key={budget.id} budget={budget} onPressed={setSelectedBudget} isSelected={budget.id === selectedBudget?.id} />
-            ))}
-          </>
-        )}
-        {selectedTab == "categories" && (
-          <>
-            {categories.map((category) => (
-              <CategoryButton key={category.id} onPressed={() => {}} category={category} />
-            ))}
-          </>
-        )}
-      </div>
+
+      <ScrollArea className="h-full">
+        <div className="flex flex-col gap-2">
+          {selectedTab == "budgets" && (
+            <>
+              {budgets.map((budget) => (
+                <BudgetButton key={budget.id} budget={budget} onPressed={setSelectedBudget} isSelected={budget.id === selectedBudget?.id} />
+              ))}
+            </>
+          )}
+          {selectedTab == "categories" && (
+            <>
+              {categories.map((category) => (
+                <CategoryButton key={category.id} onPressed={() => {}} category={category} />
+              ))}
+            </>
+          )}
+        </div>
+      </ScrollArea>
 
       <NewBudgetDialog isOpen={isNewBudgetDialogOpen} onOpenChange={setIsNewBudgetDialogOpen} />
       <NewCategoryDialog isOpen={isNewCategoryDialogOpen} onOpenChange={setIsNewCategoryDialogOpen} />
