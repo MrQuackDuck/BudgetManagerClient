@@ -34,7 +34,7 @@ export default function ChoosePhoneForm({ onSubmit }: ChoosePhoneFormProps) {
 
   return (
     <Form {...form}>
-      <form className="flex flex-col gap-2" onSubmit={form.handleSubmit(onDataSubmit)}>
+      <form className="flex flex-col gap-2 animate-appearance opacity-50" onSubmit={form.handleSubmit(onDataSubmit)}>
         <div className="space-y-1">
           <div className='flex flex-row items-center justify-center'>
             <p className="text-xl font-medium">Authentication</p>

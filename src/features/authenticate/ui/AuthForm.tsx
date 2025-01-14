@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/shared/ui/Card";
-import SignInForm from "./ChoosePhoneForm";
+import ChoosePhoneForm from "./ChoosePhoneForm";
 import { useState } from "react";
 import CodeConfirmation from "./CodeConfirmation";
 import { AuthService } from "../api/AuthService";
@@ -68,9 +68,9 @@ function AuthForm() {
 
   return (
     <>
-      <Card style={{ opacity: 0 }} className={cn("animate-smooth w-full max-w-[380px]", isLoading && "absolute invisible pointer-events-none")}>
+      <Card className={cn("animate-smooth w-full max-w-[380px]", isLoading && "absolute invisible pointer-events-none")}>
         <CardContent className="flex flex-col gap-2 py-5">
-          {stage == "phone" && <SignInForm onSubmit={handleSignIn} />}
+          {stage == "phone" && <ChoosePhoneForm onSubmit={handleSignIn} />}
           {stage == "username" && <ChooseUsernameForm defaultUsername={username} back={() => setStage(previousStage)} onSubmit={handleUsernameSubmit} />}
           {stage == "enterCode" && <CodeConfirmation back={() => setStage(previousStage)} onSubmit={handleCodeSubmit} />}
         </CardContent>

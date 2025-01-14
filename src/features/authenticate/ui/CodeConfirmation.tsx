@@ -23,7 +23,7 @@ function CodeConfirmation({ back, onSubmit }: CodeConfirmationProps) {
   }
 
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-2 animate-appearance opacity-50'>
       <div className='flex flex-row items-center justify-between'>
         <Button onClick={back} variant={"outline"} className="w-9 h-9" size={"icon"}>
           <ArrowLeftIcon strokeWidth={2.5} className="h-4 w-4" />

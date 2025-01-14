@@ -3,13 +3,13 @@ import { Separator } from "@/shared/ui/Separator";
 import { Tabs, TabsList, TabsTrigger } from "@/shared/ui/Tabs";
 import { PlusIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import BudgetButton from "./BudgetButton";
-import CategoryButton from "./CategoryButton";
+import CategoryButton from "../../../entities/category/ui/CategoryButton";
 import { useBudgetStore } from "@/entities/budget/lib/hooks/useBudgetStore";
 import { useCategoryStore } from "@/entities/category/lib/hooks/useCategoryStore";
-import NewBudgetDialog from "./NewBudgetDialog";
-import NewCategoryDialog from "./NewCategoryDialog";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/tooltip";
+import NewCategoryDialog from "../../../entities/category/ui/NewCategoryDialog";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/Tooltip";
+import NewBudgetDialog from "@/entities/budget/ui/NewBudgetDialog";
+import BudgetButton from "@/entities/budget/ui/BudgetButton";
 
 function Aside() {
   const [selectedTab, setSelectedTab] = useState("budgets");

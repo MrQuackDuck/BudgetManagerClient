@@ -4,7 +4,7 @@ import AuthForm from "@/features/authenticate/ui/AuthForm";
 
 function AuthPage() {
   return (
-    <div className="flex h-full">
+    <div className="flex h-full animate-appearance opacity-50">
       <div className={cn("w-full flex flex-col justify-center font-extrabold text-6xl text-center text-white", classes.coverScreen)}>
         <span>
           <u>Budget</u> manager,

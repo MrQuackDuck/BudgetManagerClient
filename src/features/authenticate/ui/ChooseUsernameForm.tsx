@@ -33,7 +33,7 @@ export default function ChooseUsernameForm({ back, onSubmit, defaultUsername }: 
 
   return (
     <Form {...form}>
-      <form className="flex flex-col gap-2" onSubmit={form.handleSubmit(onDataSubmit)}>
+      <form className="flex flex-col gap-2 animate-appearance opacity-50" onSubmit={form.handleSubmit(onDataSubmit)}>
         <div className='flex flex-row items-center justify-between'>
           <Button type="button" onClick={back} variant={"outline"} className="w-9 h-9" size={"icon"}>
             <ArrowLeftIcon strokeWidth={2.5} className="h-4 w-4" />

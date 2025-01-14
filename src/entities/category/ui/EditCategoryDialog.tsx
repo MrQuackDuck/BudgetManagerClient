@@ -37,7 +37,10 @@ function EditCategoryDialog({ isOpen, onOpenChange, category }: EditCategoryDial
     CategoryService.updateCategory(category.id, categoryName)
       .then(() => {
         onOpenChange(false);
-        setTimeout(() => queryClient.invalidateQueries("categories"), 70);
+        setTimeout(() => {
+          queryClient.invalidateQueries("categories");
+          queryClient.invalidateQueries("operations");
+        }, 70);
       });
   }
 

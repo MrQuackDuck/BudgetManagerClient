@@ -5,23 +5,26 @@ import { useFetchCurrencies } from "../lib/hooks/useFetchCurrencies";
 import { useFetchBudgets } from "../lib/hooks/useFetchBudgets";
 import { useFetchCategories } from "../lib/hooks/useFetchCategories";
 import { useFetchProfile } from "../lib/hooks/useFetchProfile";
+import { useFetchOperations } from "../lib/hooks/useFetchOperations";
+import MainSection from "@/widgets/main-section/ui/MainSection";
 
 function DashboardPage() {
   useFetchCurrencies();
   useFetchBudgets();
   useFetchCategories();
   useFetchProfile();
+  useFetchOperations();
 
   return (
-    <div className="flex flex-col h-full gap-4 px-[15vw] py-5">
+    <div className="flex flex-col gap-4 max-h-full overflow-y-hidden px-[15vw] py-5 animate-appearance opacity-50">
       <Header />
-      <div className="flex gap-4 h-full">
+      <div className="flex gap-4 h-full max-h-full overflow-hidden">
         <Aside />
-        <Separator className="h-full w-[1px]" orientation="vertical" />
-        <div>Main part here</div>
+        <Separator className="h-[100vh] w-[1px]" orientation="vertical" />
+        <MainSection />
       </div>
     </div>
   )
 }
 
-export default DashboardPage
+export default DashboardPage;

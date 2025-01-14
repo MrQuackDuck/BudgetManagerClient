@@ -56,12 +56,11 @@ export default {
   		},
 			keyframes: {
 				"appearance": {
-					'from': { opacity: 0 },
 					'to': { opacity: 1 },
 				},
 			},
 			animation: {
-				"smooth": "appearance .1s ease-in forwards"
+				"appearance": "appearance .1s ease-in-out forwards"
 			}
   	}
   },
