@@ -2,7 +2,7 @@ import { Button } from "@/shared/ui/Button";
 import { Separator } from "@/shared/ui/Separator";
 import { Tabs, TabsList, TabsTrigger } from "@/shared/ui/Tabs";
 import { PlusIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BudgetButton from "./BudgetButton";
 import CategoryButton from "./CategoryButton";
 import { useBudgetStore } from "@/entities/budget/lib/hooks/useBudgetStore";
@@ -12,7 +12,8 @@ import NewCategoryDialog from "./NewCategoryDialog";
 
 function Aside() {
   const [selectedTab, setSelectedTab] = useState("budgets");
-  const [selectedBudgetId, setSelectedBudgetId] = useState(1);
+  const selectedBudget = useBudgetStore(state => state.selectedBudget);
+  const setSelectedBudget = useBudgetStore(state => state.setSelectedBudget);
 
   const [isNewBudgetDialogOpen, setIsNewBudgetDialogOpen] = useState(false);
   const [isNewCategoryDialogOpen, setIsNewCategoryDialogOpen] = useState(false);
@@ -24,6 +25,10 @@ function Aside() {
     if (selectedTab === "budgets") setIsNewBudgetDialogOpen(true);
     if (selectedTab === "categories") setIsNewCategoryDialogOpen(true);
   }
+
+  useEffect(() => {
+    if (!selectedBudget && budgets.length > 0) setSelectedBudget(budgets[0]);
+  }, [selectedBudget, budgets, setSelectedBudget]);
 
   return (
     <aside className="flex flex-col px-[10px] gap-3 w-[320px]">
@@ -47,7 +52,7 @@ function Aside() {
         {selectedTab == "budgets" && (
           <>
             {budgets.map((budget) => (
-              <BudgetButton key={budget.id} budget={budget} onPressed={(b) => setSelectedBudgetId(b.id)} isSelected={budget.id === selectedBudgetId} />
+              <BudgetButton key={budget.id} budget={budget} onPressed={setSelectedBudget} isSelected={budget.id === selectedBudget?.id} />
             ))}
           </>
         )}

@@ -5,6 +5,8 @@ import { devtools } from "zustand/middleware";
 interface BudgetStore {
   budgets: BudgetModel[];
   setBudgets: (budgets: BudgetModel[]) => void;
+  selectedBudget: BudgetModel | null;
+  setSelectedBudget: (budget: BudgetModel | null) => void;
 }
 
 export const useBudgetStore = create<BudgetStore>()(
@@ -12,6 +14,10 @@ export const useBudgetStore = create<BudgetStore>()(
     budgets: [],
     setBudgets: (budgets: BudgetModel[]) => {
       set({ budgets });
+    },
+    selectedBudget: null,
+    setSelectedBudget: (selectedBudget: BudgetModel | null) => {
+      set({ selectedBudget });
     },
   }), { name: "BudgetStore" })
 );
