@@ -14,4 +14,12 @@ export class CategoryService {
   static async createCategory(name: string): Promise<AxiosResponse<CategoryModel>> {
     return $api.post<CategoryModel>("/management/categories", { name });
   }
+
+  static async updateCategory(categoryId: number, name: string): Promise<AxiosResponse<CategoryModel>> {
+    return $api.put<CategoryModel>(`/management/categories/${categoryId}`, { name });
+  }
+
+  static async deleteCategory(categoryId: number): Promise<AxiosResponse<void>> {
+    return $api.delete<void>(`/management/categories/${categoryId}`);
+  }
 }
