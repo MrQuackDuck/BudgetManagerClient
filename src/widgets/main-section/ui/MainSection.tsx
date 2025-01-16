@@ -15,17 +15,22 @@ function MainSection() {
 
   function countExpenses() {
     let sum: number = 0;
-    filteredOperations.filter(o => o.operation_type == "SUB").forEach(o => sum += +o.amount);
+    filteredOperations.filter((o) => o.operation_type == "SUB").forEach((o) => (sum += +o.amount));
     return sum;
   }
 
   function countIncome() {
     let sum: number = 0;
-    filteredOperations.filter(o => o.operation_type == "ADD").forEach(o => sum += +o.amount);
+    filteredOperations.filter((o) => o.operation_type == "ADD").forEach((o) => (sum += +o.amount));
     return sum;
   }
 
-  if (!selectedBudget) return <></>;
+  if (!selectedBudget)
+    return (
+      <div className="w-full h-full flex justify-center">
+        <h1 className="font-medium pt-4">Nothing here yet. Create a budget at first 🙂</h1>
+      </div>
+    );
   const currencySymbol = selectedBudget.related_currency.symbol;
   return (
     <>
@@ -36,9 +41,13 @@ function MainSection() {
             <span className="text-2xl font-semibold">{selectedBudget.title}</span>
           </div>
           <div className="flex flex-row items-center gap-2">
-            <span className="text-lg font-semibold text-red-500">{countExpenses()} {currencySymbol} spent</span>
+            <span className="text-lg font-semibold text-red-500">
+              {countExpenses()} {currencySymbol} spent
+            </span>
             <Separator className="h-8" orientation="vertical" />
-            <span className="text-lg font-semibold text-lime-500">{countIncome()} {currencySymbol} earned</span>
+            <span className="text-lg font-semibold text-lime-500">
+              {countIncome()} {currencySymbol} earned
+            </span>
             <Button onClick={() => setNewOperationDialogOpen(true)} className="ml-2">
               + New
             </Button>
