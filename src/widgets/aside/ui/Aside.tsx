@@ -38,8 +38,8 @@ function Aside({ className }: AsideProps) {
   }, [selectedBudget, budgets, setSelectedBudget]);
 
   return (
-    <aside className={cn("flex flex-col px-[10px] gap-3 max-w-[320px]", className)}>
-      <div className="flex gap-3 items-center">
+    <aside className={cn("flex flex-col px-[10px] gap-3 w-full max-lg:max-w-none max-w-[300px]", className)}>
+      <div className="flex max-lg:flex-col gap-3 items-center">
         <Tabs className="w-full" defaultValue="budgets" value={selectedTab} onValueChange={setSelectedTab}>
           <TabsList className="w-full">
             <TabsTrigger className="w-full" value="budgets">
@@ -52,7 +52,7 @@ function Aside({ className }: AsideProps) {
         </Tabs>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button onClick={handlePlusClick} variant={"outline"} className="aspect-square rounded-full">
+            <Button onClick={handlePlusClick} variant={"outline"} className="aspect-square rounded-full max-lg:w-full">
               <PlusIcon className="w-4 h-4" />
             </Button>
           </TooltipTrigger>

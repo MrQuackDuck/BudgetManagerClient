@@ -12,7 +12,7 @@ import { z } from "zod";
 
 const formSchema = z.object({
   budgetName: z.string().min(2, `Budget name must contain at least ${2} symbols!`).max(50, `Budget name must contain no more than ${50} symbols!`),
-  initialAmount: z.string().regex(/^\d+(\.\d{1,2})?$/, "Invalid number format"),
+  initialAmount: z.string().regex(/^-?\d+(\.\d{1,2})?$/, "Invalid number format"),
 });
 
 interface EditBudgetDialogProps {

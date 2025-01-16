@@ -37,7 +37,7 @@ function BudgetButton({ budget, onPressed, isSelected }: BudgetButtonProps) {
             onClick={() => onPressed(budget)}
           >
             <span className="text-muted-foreground font-semibold text-sm">{budget.related_currency.symbol}</span>
-            <span className="text-sm font-medium">{budget.title}</span>
+            <span className="text-sm font-medium text-ellipsis text-nowrap inline-block overflow-hidden">{budget.title}</span>
           </Button>
         </ContextMenuTrigger>
         <ContextMenuContent>

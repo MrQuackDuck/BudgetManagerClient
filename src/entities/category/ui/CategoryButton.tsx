@@ -31,7 +31,7 @@ function CategoryButton({ category, onPressed }: CategoryButtonProps) {
       <ContextMenu>
         <ContextMenuTrigger asChild>
           <Button variant={"outline"} className="flex flex-row transition-all justify-between border-none gap-1.5 select-none cursor-pointer py-1 px-3" onClick={() => onPressed(category)}>
-            <span className="text-sm font-medium">{category.name}</span>
+            <span className="text-sm font-medium text-ellipsis text-nowrap inline-block overflow-hidden">{category.name}</span>
           </Button>
         </ContextMenuTrigger>
         <ContextMenuContent>

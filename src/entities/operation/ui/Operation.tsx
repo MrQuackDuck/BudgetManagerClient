@@ -44,7 +44,7 @@ function Operation({ operation }: OperationProps) {
     <>
       <ContextMenu>
         <ContextMenuTrigger asChild>
-          <div className="flex flex-row gap-1.5 items-center" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+          <div className="flex flex-row gap-1.5 items-center max-w-full overflow-hidden" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
             <Button onClick={() => setIsEditDialogOpen(true)} className={cn("aspect-square")} variant={"ghost"}>
               {!isHovered && (
                 <>
@@ -57,17 +57,17 @@ function Operation({ operation }: OperationProps) {
               )}
               {isHovered && <PencilIcon className="animate-appearance opacity-50 text-orange-500" />}
             </Button>
-            <div className={cn("flex flex-row px-3 justify-between items-center w-full h-11 rounded-md border border-border/50", isHovered && "bg-muted")}>
-              <div className="flex flex-row gap-1.5">
-                <span className="text-base font-medium">{operation.title}</span>
+            <div className={cn("flex flex-row overflow-x-hidden px-3 justify-between items-center w-full gap-4 h-11 rounded-md border border-border/50", isHovered && "bg-muted")}>
+              <div className="flex flex-row gap-1.5 overflow-hidden">
+                <span className="text-base font-medium text-popover-foreground text-ellipsis text-nowrap inline-block overflow-hidden">{operation.title}</span>
                 {operation.related_category && (
                   <>
                     <Separator className="h-6" orientation="vertical" />
-                    <span className="text-muted-foreground">{operation.related_category.name}</span>
+                    <span className="text-muted-foreground text-ellipsis text-nowrap inline-block overflow-hidden shrink-0">{operation.related_category.name}</span>
                   </>
                 )}
               </div>
-              <div className="flex gap-1.5">
+              <div className="w-fit flex gap-1.5 shrink-0">
                 <span className="text-slate-500 font-medium">{formatDateTime(operation.created_at)}</span>
                 <Separator className="h-6" orientation="vertical" />
                 {operation.operation_type == "ADD" && (
