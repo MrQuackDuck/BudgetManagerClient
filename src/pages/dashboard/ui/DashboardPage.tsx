@@ -9,7 +9,7 @@ import { useFetchOperations } from "../lib/hooks/useFetchOperations";
 import MainSection from "@/widgets/main-section/ui/MainSection";
 import { Button } from "@/shared/ui/Button";
 import { PanelLeftOpen } from "lucide-react";
-import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/shared/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/shared/ui/Sheet";
 import { useBudgetStore } from "@/entities/budget/lib/hooks/useBudgetStore";
 import { useEffect, useState } from "react";
 
