@@ -67,7 +67,7 @@ function Operation({ operation }: OperationProps) {
                   </>
                 )}
               </div>
-              <div className="w-fit flex max-sm:flex-row-reverse gap-1.5 shrink-0">
+              <div className="w-fit flex max-sm:flex-row-reverse max-sm:items-center gap-1.5 shrink-0">
                 <span className="text-slate-500 font-medium">{formatDateTime(operation.created_at)}</span>
                 <Separator className="h-6" orientation="vertical" />
                 {operation.operation_type == "ADD" && (
