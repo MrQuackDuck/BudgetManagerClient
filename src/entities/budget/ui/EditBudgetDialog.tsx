@@ -40,7 +40,9 @@ function EditBudgetDialog({ isOpen, onOpenChange, budget }: EditBudgetDialogProp
     BudgetService.updateBudget(budget.id, budgetName, +initialAmount)
       .then(() => {
         onOpenChange(false);
-        setTimeout(() => queryClient.invalidateQueries("budgets"), 70);
+        setTimeout(() => {
+          queryClient.invalidateQueries("budgets");
+        }, 70);
       });
   }
 

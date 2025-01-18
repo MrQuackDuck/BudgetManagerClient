@@ -57,26 +57,26 @@ function Operation({ operation }: OperationProps) {
               )}
               {isHovered && <PencilIcon className="animate-appearance opacity-50 text-orange-500" />}
             </Button>
-            <div className={cn("flex flex-row overflow-x-hidden px-3 justify-between items-center w-full gap-4 h-11 rounded-md border border-border/50", isHovered && "bg-muted")}>
-              <div className="flex flex-row gap-1.5 overflow-hidden">
-                <span className="text-base font-medium text-popover-foreground text-ellipsis text-nowrap inline-block overflow-hidden">{operation.title}</span>
+            <div className={cn("flex flex-row max-sm:flex-col overflow-x-hidden px-3 justify-between max-sm:items-start max-sm:py-2 items-center w-full max-sm:gap-2 gap-4 h-11 max-sm:h-fit rounded-md border border-border/50", isHovered && "bg-muted")}>
+              <div className="flex flex-row max-sm:flex-col gap-1.5 overflow-hidden">
+                <span className="text-base font-medium shrink-0 text-popover-foreground text-ellipsis text-nowrap inline-block overflow-hidden">{operation.title}</span>
                 {operation.related_category && (
                   <>
-                    <Separator className="h-6" orientation="vertical" />
+                    <Separator className="h-6 max-sm:hidden" orientation="vertical" />
                     <span className="text-muted-foreground text-ellipsis text-nowrap inline-block overflow-hidden shrink-0">{operation.related_category.name}</span>
                   </>
                 )}
               </div>
-              <div className="w-fit flex gap-1.5 shrink-0">
+              <div className="w-fit flex max-sm:flex-row-reverse gap-1.5 shrink-0">
                 <span className="text-slate-500 font-medium">{formatDateTime(operation.created_at)}</span>
                 <Separator className="h-6" orientation="vertical" />
                 {operation.operation_type == "ADD" && (
-                  <span className="text-lime-500 font-medium">
+                  <span className="text-lime-500 font-medium text-ellipsis text-nowrap inline-block">
                     +{operation.amount} {operation.related_budget.related_currency.symbol}
                   </span>
                 )}
                 {operation.operation_type == "SUB" && (
-                  <span className="text-red-500 font-medium">
+                  <span className="text-red-500 font-medium text-ellipsis text-nowrap inline-block">
                     -{operation.amount} {operation.related_budget.related_currency.symbol}
                   </span>
                 )}

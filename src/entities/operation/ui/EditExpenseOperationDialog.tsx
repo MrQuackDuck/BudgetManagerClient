@@ -55,7 +55,7 @@ function EditExpenseOperationDialog({ operation, isOpen, onOpenChange, deleteCli
     const amount = data.amount;
 
     // Send the operation data to the server
-    OperationService.updateOperation(operation.id, title, operationType, +amount, null)
+    OperationService.updateOperation(operation.id, title, operationType, +amount, +data.relatedCategoryId)
       .then(() => {
         queryClient.invalidateQueries("operations");
         onOpenChange(false);

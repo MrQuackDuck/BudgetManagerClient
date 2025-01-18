@@ -37,6 +37,12 @@ function Aside({ className }: AsideProps) {
     if (!selectedBudget && budgets.length > 0) setSelectedBudget(budgets[0]);
   }, [selectedBudget, budgets, setSelectedBudget]);
 
+  useEffect(() => {
+    if (!selectedBudget) return;
+    const indexOfSelectedBudget = budgets.findIndex((budget) => budget.id === selectedBudget?.id);
+    setSelectedBudget(budgets[indexOfSelectedBudget]);
+  }, [budgets, setSelectedBudget, selectedBudget]);
+
   return (
     <aside className={cn("flex flex-col px-[10px] gap-3 w-full max-lg:max-w-none max-w-[300px]", className)}>
       <div className="flex max-lg:flex-col gap-3 items-center">

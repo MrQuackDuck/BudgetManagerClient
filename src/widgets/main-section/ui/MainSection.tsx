@@ -25,10 +25,10 @@ function MainSection() {
     filteredOperations.filter((o) => o.operation_type == "ADD").forEach((o) => (sum += +o.amount));
     return sum;
   }
-
+ 
   function countBalance() {
     if (!selectedBudget) return 0;
-    return +selectedBudget?.initial_amount + countIncome() + countExpenses();
+    return +selectedBudget?.initial_amount + countIncome() - countExpenses();
   }
   const balance = countBalance();
 
@@ -43,7 +43,7 @@ function MainSection() {
     <>
       <div className="w-full h-full max-w-full max-h-full flex flex-col gap-3 px-6 overflow-x-hidden">
         <div className="flex flex-row max-w-full max-lg:flex-col max-lg:gap-2 items-center justify-between">
-          <div className="flex flex-row max-w-full max-lg:justify-between w-full items-center gap-2 overflow-hidden">
+          <div className="flex flex-row max-w-full max-lg:justify-between w-[30%] max-lg:w-full items-center gap-2 overflow-hidden">
             <div className="flex flex-row max-w-full items-center gap-2 overflow-hidden">
               <span className="text-xl pt-0.5 font-semibold text-muted-foreground select-none">{currencySymbol}</span>
               <span className="text-2xl font-semibold text-ellipsis text-nowrap inline-block overflow-hidden">{selectedBudget.title}</span>
@@ -53,16 +53,16 @@ function MainSection() {
             </Button>
           </div>
           <Separator className="hidden max-lg:block" />
-          <div className="flex flex-row w-full max-w-full justify-end max-lg:justify-between items-center gap-2">
-            <span className="text-lg font-semibold text-red-500 text-nowrap">
+          <div className="flex flex-row flex-wrap w-full max-w-full justify-end max-lg:justify-between items-center gap-2">
+            <span className="text-lg font-semibold text-red-500 text-ellipsis text-nowrap inline-block overflow-hidden">
               {countExpenses()} {currencySymbol} spent
             </span>
             <Separator className="h-8 max-lg:hidden" orientation="vertical" />
-            <span className="text-slate-500 text-lg font-semibold text-nowrap">
+            <span className="text-slate-500 text-lg font-semibold text-ellipsis text-nowrap inline-block overflow-hidden">
               Balance: <span className={cn(balance > 0 && "text-lime-500", balance < 0 && "text-red-500")}>{balance} {currencySymbol}</span>
             </span>
             <Separator className="h-8 max-lg:hidden" orientation="vertical" />
-            <span className="text-lg font-semibold text-lime-500 text-nowrap">
+            <span className="text-lg font-semibold text-lime-500 text-ellipsis text-nowrap inline-block overflow-hidden">
               {countIncome()} {currencySymbol} earned
             </span>
             <Button onClick={() => setNewOperationDialogOpen(true)} className="ml-2 max-lg:hidden">
