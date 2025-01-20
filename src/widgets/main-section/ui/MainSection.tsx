@@ -17,18 +17,19 @@ function MainSection() {
   function countExpenses() {
     let sum: number = 0;
     filteredOperations.filter((o) => o.operation_type == "SUB").forEach((o) => (sum += +o.amount));
-    return sum;
+    return Math.floor(sum * 100) / 100;
   }
 
   function countIncome() {
     let sum: number = 0;
     filteredOperations.filter((o) => o.operation_type == "ADD").forEach((o) => (sum += +o.amount));
-    return sum;
+    return Math.floor(sum * 100) / 100;
   }
  
   function countBalance() {
     if (!selectedBudget) return 0;
-    return +selectedBudget?.initial_amount + countIncome() - countExpenses();
+    const num = +selectedBudget?.initial_amount + countIncome() - countExpenses();
+    return Math.floor(num * 100) / 100;
   }
   const balance = countBalance();
 
