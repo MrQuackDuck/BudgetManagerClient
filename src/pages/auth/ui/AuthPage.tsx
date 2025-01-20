@@ -1,6 +1,6 @@
 import { cn } from "@/shared/lib/utils";
 import classes from "./AuthPage.module.css";
-import AuthForm from "@/features/authenticate/ui/AuthForm";
+import AuthForm from "@/features/authentication/ui/AuthForm";
 import { useMediaQuery } from "@/shared/lib/hooks/useMediaQuery";
 
 function AuthPage() {
