@@ -4,7 +4,7 @@ import AuthForm from "@/features/authentication/ui/AuthForm";
 import { useMediaQuery } from "@/shared/lib/hooks/useMediaQuery";
 
 function AuthPage() {
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const isDesktop = useMediaQuery("(min-width: 1440px)");
 
   return (
     <div className="flex h-full animate-appearance opacity-50">
